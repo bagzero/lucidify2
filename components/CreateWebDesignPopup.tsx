@@ -68,22 +68,20 @@ const CreateWebDesignPopup: React.FC<CreateWebDesignPopupProps> = ({ closeCreatP
 
     // Handle designType toggle (button acting like a radio button, only one designType can be selected)
     const handleDesignTypeToggle = (designType: string) => {
-        const updatedDesignTypes = formData.designType[0] === designType ? [] : [designType];
         setFormData((prevState) => ({
             ...prevState,
-            designType: updatedDesignTypes,
+            designType: prevState.designType === designType ? "" : designType,
         }));
     };
 
     // Handle designType toggle (button acting like a radio button, only one designType can be selected)
-    const handleDesignPageToggle = (designPage: string) => {
-        const updatedDesignPages = formData.designPage[0] === designPage ? [] : [designPage];
+    const handleDesignPageToggle = (designPage: "Sections" | "Full-Page") => {
         setFormData((prevState) => ({
             ...prevState,
-            designPage: updatedDesignPages,
+            designPage: prevState.designPage === designPage ? "" : designPage,
         }));
     };
-
+    
     // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -325,5 +323,6 @@ const CreateWebDesignPopup: React.FC<CreateWebDesignPopupProps> = ({ closeCreatP
         </div>
     );
 };
+
 
 export default CreateWebDesignPopup;
